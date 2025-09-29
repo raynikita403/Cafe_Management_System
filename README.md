@@ -2,13 +2,13 @@
 
 This is an **in-progress project** for a **Cafe Management System**, demonstrating **role-based login** and core CRUD functionalities for Admin and Customer users.  
 
-The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thymeleaf, MySQL, Bootstrap, AJAX, and jQuery** to build a dynamic and secure web application.  
+The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Spring Web MVC, Thymeleaf, MySQL, Bootstrap, AJAX, and jQuery** to build a dynamic and secure web application.  
 **All user passwords are securely stored in the database in encrypted form using Spring Security.**
 
 ---
 
 ## **Technologies Used**
-- **Backend:** Spring Boot, Spring Security, Spring Data JPA , spring web MVC 
+- **Backend:** Spring Boot, Spring Security, Spring Data JPA, Spring Web MVC  
 - **Frontend:** Thymeleaf, Bootstrap, AJAX, jQuery  
 - **Database:** MySQL  
 - **Authentication:** JWT Tokens for secure login, passwords stored encrypted  
@@ -41,15 +41,14 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thyme
 ## **Screenshots**
 
 ### Admin Login
-Screenshots/AdminDashboard.png
+[![Admin Login](screenshots/AdminDashboard.png)](screenshots/AdminDashboard.png)
 
-### Customer
-Screenshots/CustomerPage.png
+### Customer Page
+[![Customer Page](screenshots/CustomerPage.png)](screenshots/CustomerPage.png)
 
 ### User Login Page
-Screenshots/Login.png
+[![User Login](screenshots/Login.png)](screenshots/Login.png)
 
-### User Registeration
-Screenshots/Registeration.png
-
+### User Registration
+[![User Registration](screenshots/Registeration.png)](screenshots/Registeration.png)
 
