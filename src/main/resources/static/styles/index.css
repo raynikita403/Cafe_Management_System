@@ -1,0 +1,148 @@
+*{
+     font-family: 'Montserrat', sans-serif !important;
+}
+.cursive-heading{
+    font-family: 'Satisfy', cursive !important;
+     color: #dfa30b;
+     font-weight: bold;
+     letter-spacing: 1px;
+}
+.background-yellow{
+    background-color: #dfa30b;
+}
+.background-cream{
+  background-color: #f4dfca;
+}
+.font-yellow{
+    color: #dfa30b;
+}
+.carousel-img {
+  height: 400px;        
+  
+}
+
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 250px;      
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-img {
+    height: 180px;      
+  }
+}
+/*Font size for all text(paragraph)*/
+.p {
+    font-size: 16px;
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    p {
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    p {
+        font-size: 12px;
+    }
+}
+
+/*Contact Form */
+
+input,textarea {
+  font-size: 12px !important;
+}
+
+::placeholder {
+  font-size: 12px !important;
+}
+.contact-img{
+  background-image: url(/images/ContactUs_img.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.footer-background {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url(/public/images/footer-background.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+.social-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.social-circle:hover {
+  transform: scale(1.1);
+}
+/*----------About Page ----------------*/
+.about-page-background{
+  background-image: url(/public/images/slider-2.jpg);
+}
+/*Dark Theme Setup*/
+body.dark-theme .navbar.bg-body-secondary {
+    background-color: #000000 !important; 
+}
+body.dark-theme .navbar.bg-body-secondary .nav-link,
+body.dark-theme .navbar.bg-body-secondary .text-dark,
+body.dark-theme .navbar.bg-body-secondary .cursive-heading,
+body.dark-theme .navbar.bg-body-secondary i {
+    color: #ffffff !important; 
+}
+/* span.cursive-heading yellow */
+body.dark-theme .navbar.bg-body-secondary .cursive-heading {
+    color: #dfa30b !important; 
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #f4f4f4;
+}
+body.dark-theme .card{
+  border: none;
+}
+body.dark-theme .background-cream {
+    background-color: #333333;
+}
+
+body.dark-theme .font-yellow {
+    color: #ffcc00; 
+}
+
+body.dark-theme input,
+body.dark-theme textarea {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+    border: 1px solid #555;
+}
+
+body.dark-theme ::placeholder {
+    color: #ccc;
+}
+
+body.dark-theme .carousel-img {
+    filter: brightness(0.7);
+}
+/*Register Page*/
+.login-register-bg{
+  background-image: url(/images/footer-background.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.form-bg{
+    background-color: rgba(0, 0, 0, 0.628);
+}
+.login-register-width{
+    width: 400px;
+}
+

@@ -1,0 +1,50 @@
+<!-- admin/Products.html -->
+<div th:fragment="productListFragment">
+    <div class="container my-3">
+        <!-- Category Filter Buttons -->
+        <div class="d-flex justify-content-end flex-wrap mb-3">
+            <button class="btn yellow-background m-1 category-btn text-light active" data-category="All">All</button>
+            <button class="btn yellow-background m-1 category-btn text-light" data-category="Tea">Tea</button>
+            <button class="btn yellow-background m-1 category-btn text-light" data-category="Coffee">Coffee</button>
+            <button class="btn yellow-background m-1 category-btn text-light" data-category="Beverage">Beverage</button>
+            <button class="btn yellow-background m-1 category-btn text-light" data-category="Snacks">Snacks</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row" id="productContainer">
+            <div class="col-md-4 mb-4" th:each="product : ${products}" th:data-category="${product.category.cName}">
+                <div class="card h-100 shadow">
+                    <img th:src="@{'/product-images/' + ${product.id}}"
+                         class="card-img-top" alt="Product Image"
+                         style="height: 200px; width: 100%; object-fit: cover; background-color: #f8f9fa;">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light" th:text="${product.name}">Product Name</h5>
+                        <p class="card-text text-light" th:text="${product.description}">Product Description</p>
+                        <p class="card-text text-light font-weight-bold">₹<span th:text="${product.price}">0.00</span></p>
+                        <p class="card-text text-light" th:text="${product.stockStatus.status}">Stock Status</p>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <button class="btn btn-warning btn-sm updateProductBtn" 
+                                data-id="${product.id}" 
+                                data-toggle="modal"
+                                data-target="#updateProductModal">
+                            <i class="bi bi-pencil"></i> Update
+                        </button>
+
+                        <a th:href="@{'/deleteProduct/' + ${product.id}}"
+                           class="btn yellow-background btn-sm"
+                           onclick="return confirm('Are you sure to delete this product?');">
+                           <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+    </div>
+</div>
+
+

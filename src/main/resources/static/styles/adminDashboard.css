@@ -1,0 +1,37 @@
+
+*{
+    font-family: sans-serif;
+}
+.text-color{
+	color:#dfa30b;
+}
+.yellow-background{
+	background-color:#dfa30b !important;
+}
+
+.custom-navbar {
+    min-height: 100vh;
+}
+
+
+@media (max-width: 768px) {
+    .custom-navbar {
+        min-height: 30vh !important; 
+
+    }
+    .custom-toggler{
+        margin-left: 30px;
+    }
+}
+/*Add Product Form*/
+ th, td, label, input,select {
+    font-size: 12px !important;
+}
+/*Cards*/
+.card-body, .card-footer {
+    background-color: #333; 
+}
+
+
+
+
