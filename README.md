@@ -2,15 +2,16 @@
 
 This is an **in-progress project** for a **Cafe Management System**, demonstrating **role-based login** and core CRUD functionalities for Admin and Customer users.  
 
-The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thymeleaf, MySQL, Bootstrap, AJAX, and jQuery** to build a dynamic and secure web application.
+The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thymeleaf, MySQL, Bootstrap, AJAX, and jQuery** to build a dynamic and secure web application.  
+**All user passwords are securely stored in the database in encrypted form using Spring Security.**
 
 ---
 
 ## **Technologies Used**
-- **Backend:** Spring Boot, Spring Security, Spring Data JPA  
+- **Backend:** Spring Boot, Spring Security, Spring Data JPA , spring web MVC 
 - **Frontend:** Thymeleaf, Bootstrap, AJAX, jQuery  
 - **Database:** MySQL  
-- **Authentication:** JWT Tokens for secure login  
+- **Authentication:** JWT Tokens for secure login, passwords stored encrypted  
 - **Build Tool:** Maven  
 
 ---
@@ -22,7 +23,8 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thyme
 - Dynamic data loading using **AJAX and jQuery**  
 - Responsive UI with **Bootstrap**  
 - Integration with **MySQL** using **Spring Data JPA**  
-- Pages rendered dynamically with **Thymeleaf templates**
+- Pages rendered dynamically with **Thymeleaf templates**  
+- **Secure password storage** using encryption (Spring Security)  
 
 ---
 
@@ -32,6 +34,22 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Thyme
 - Using **Thymeleaf** for dynamic front-end rendering  
 - Making asynchronous calls using **AJAX and jQuery**  
 - Connecting backend with **MySQL database** for CRUD operations  
+- Ensuring **secure password storage and authentication**  
 
 ---
+
+## **Screenshots**
+
+### Admin Login
+Screenshots/AdminDashboard.png
+
+### Customer
+Screenshots/CustomerPage.png
+
+### User Login Page
+Screenshots/Login.png
+
+### User Registeration
+Screenshots/Registeration.png
+
 
