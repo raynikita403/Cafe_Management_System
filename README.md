@@ -41,14 +41,14 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Sprin
 ## **Screenshots**
 
 ### Admin Login
-[![Admin Login](screenshots/AdminDashboard.png)](screenshots/AdminDashboard.png)
+[![Admin Login](Screenshots/AdminDashboard.png)](screenshots/AdminDashboard.png)
 
 ### Customer Page
-[![Customer Page](screenshots/CustomerPage.png)](screenshots/CustomerPage.png)
+[![Customer Page](Screenshots/CustomerPage.png)](screenshots/CustomerPage.png)
 
 ### User Login Page
-[![User Login](screenshots/Login.png)](screenshots/Login.png)
+[![User Login](Screenshots/Login.png)](Screenshots/Login.png)
 
 ### User Registration
-[![User Registration](screenshots/Registeration.png)](screenshots/Registeration.png)
+[![User Registration](Screenshots/Registeration.png)](Screenshots/Registeration.png)
 
