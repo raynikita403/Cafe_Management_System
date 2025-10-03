@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import in.nikita.entity.CafePruduct;
@@ -83,12 +84,60 @@ public class ProductCrudController {
         return "admin/Admin";
     }
  
+    //----------For Update ----------------------
+    
+    
+    @GetMapping("/editProduct/{id}")
+    public String editProductForm(@PathVariable int id, Model model) {
+        CafePruduct product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("stocks", stockService.getAllProductStocks());
+        return "admin/EditProductForm :: editProductForm";
+    }
+    @PostMapping("/updateProduct")
+    @ResponseBody
+    public ResponseEntity<?> updateProduct(@RequestParam("id") int id,
+                                           @RequestParam("name") String name,
+                                           @RequestParam("description") String description,
+                                           @RequestParam("price") double price,
+                                           @RequestParam("categoryId") int categoryId,
+                                           @RequestParam("stockId") int stockId,
+                                           @RequestParam(value = "productImage", required = false) MultipartFile file) throws IOException {
+
+        // Fetch existing product
+        CafePruduct product = productService.getProductById(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build(); // Return 404 if product not found
+        }
+
+        // Update fields
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setCategory(categoryService.getCategoryById(categoryId));
+        product.setStockStatus(stockService.getProductStockId(stockId));
+
+        // Update image if provided
+        if (file != null && !file.isEmpty()) {
+            product.setImage(file.getBytes());
+        }
+
+        // Save updated product
+        productService.saveCafeProduct(product);
+        return ResponseEntity.ok("{\"status\":\"success\"}");
+    }
+
+
 
     // ---------------- Delete Product ----------------
     @GetMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id, Model model) {
         productService.deleteCafeProduct(id);
         model.addAttribute("products", productService.getAllCafeProduct());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("stocks", stockService.getAllProductStocks());
+        model.addAttribute("product", new CafePruduct());
         return "admin/Admin"; 
     }
 
