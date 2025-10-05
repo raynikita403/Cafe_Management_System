@@ -73,10 +73,10 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Sprin
 [![Add To Cart](Screenshots/AddToCart.png)](screenshots/AddToCart.png)
 
 ### Orders Bills
-[!Orders Bills](Screenshots/Order.png)](screenshots/Order.png)
+[![Orders Bills](Screenshots/Order.png)](screenshots/Order.png)
 
 ### Order Placed
-[!Order Placed](Screenshots/OrderPlaced.png)](screenshots/OrderPlaced.png)
+[![Order Placed](Screenshots/OrderPlaced.png)](screenshots/OrderPlaced.png)
 
 
 
