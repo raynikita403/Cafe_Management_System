@@ -17,14 +17,22 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Sprin
 ---
 
 ## **Project Features (In-Progress)**
-- **Role-based login:** Separate access for **Admin** and **Customer**  
-- JWT token generation for authenticated users  
-- CRUD operations for products (Admin side)  
-- Dynamic data loading using **AJAX and jQuery**  
-- Responsive UI with **Bootstrap**  
-- Integration with **MySQL** using **Spring Data JPA**  
+- **Role-based login:** Separate access for **Admin** and **Customer**
+- - **Secure password storage** using encryption (Spring Security)  
+- **JWT token generation for authenticated users** 
+- **CRUD operations for products (Admin side)**  
+- **Dynamic Cart Management (Customer side)**:
+      - Add/Remove products to cart dynamically
+      - Manage product quantity with increase/decrease buttons
+      - Live total calculation in cart modal 
+- **Order Placement Flow**:
+      - Place order directly from the cart
+      - Orders saved to the database with quantity and bill details
+      - Cart automatically cleared after successful order
+      - SweetAlert2 popups for order confirmation & error handling 
+- Responsive UI with Bootstrap
 - Pages rendered dynamically with **Thymeleaf templates**  
-- **Secure password storage** using encryption (Spring Security)  
+
 
 ---
 
@@ -33,7 +41,8 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Sprin
 - Understanding **Spring Data JPA entity mapping and MVC architecture**  
 - Using **Thymeleaf** for dynamic front-end rendering  
 - Making asynchronous calls using **AJAX and jQuery**  
-- Connecting backend with **MySQL database** for CRUD operations  
+- Connecting backend with **MySQL database** for CRUD operations
+- Integrating SweetAlert2 for user-friendly notifications 
 - Ensuring **secure password storage and authentication**  
 
 ---
@@ -57,6 +66,17 @@ The project uses **Spring Boot, Spring Security with JWT, Spring Data JPA, Sprin
 ### Customer Page
 [![Customer Page](Screenshots/CustomerPage.png)](screenshots/CustomerPage.png)
 
+### About Page
+[![About Page](Screenshots/AboutPage.png)](screenshots/AboutPage.png)
+
+### Add To Cart
+[![Add To Cart](Screenshots/AddToCart.png)](screenshots/AddToCart.png)
+
+### Orders Bills
+[!Orders Bills](Screenshots/Order.png)](screenshots/Order.png)
+
+### Order Placed
+[!Order Placed](Screenshots/OrderPlaced.png)](screenshots/OrderPlaced.png)
 
 
 
