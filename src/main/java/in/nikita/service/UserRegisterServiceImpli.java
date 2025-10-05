@@ -65,7 +65,7 @@ public class UserRegisterServiceImpli implements UserRegisterService {
             // check password
             if (passwordEncoder.matches(password, user.getUserPassword())) {
                 // generate JWT token
-                String token = jwtUtil.generateToken(user.getUserEmail(), user.getRole());
+                String token = jwtUtil.generateToken(user.getUserEmail(), user.getRole(),user.getUserName());
                 user.setToken(token);
                 return repo.save(user);  // save updated token in DB
             }

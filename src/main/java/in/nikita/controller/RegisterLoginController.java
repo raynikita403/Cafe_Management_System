@@ -72,9 +72,14 @@ public class RegisterLoginController {
         );
 
         if (user != null) {
-            // Store token in session
+        	  // ✅ Add the full customer object for order mapping later
+            session.setAttribute("customer", user);
+            
             session.setAttribute("token", user.getToken());
-
+            session.setAttribute("userName", user.getUserName());
+            session.setAttribute("userRole", user.getRole());
+            session.setAttribute("username", user.getUserEmail());
+            
             // Manually set authentication in SecurityContext for session
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     user.getUserEmail(),

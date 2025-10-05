@@ -39,12 +39,11 @@ public class ProductCrudController {
     // ---------------- Show Products Page ----------------
     @GetMapping("/productsList")
     public String showProducts(Model model) {
-    	 System.out.println("DEBUG: /productsList called");
-    	    model.addAttribute("products", productService.getAllCafeProduct());
-    	    System.out.println("Products size:tell me " + productService.getAllCafeProduct().size());
-    	    return "admin/Products :: productListFragment";
-        
+        model.addAttribute("products", productService.getAllCafeProduct());
+        model.addAttribute("isAdmin", true); // Admin view
+        return "admin/Products :: productListFragment";
     }
+
 
 
     // ---------------- Handle Product Save ----------------

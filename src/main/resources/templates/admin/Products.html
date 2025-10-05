@@ -39,20 +39,29 @@
 					</div>
 
 					<div class="card-footer text-center">
-						<button class="btn btn-warning btn-sm updateProductBtn"
-							th:data-id="${product.id}" onclick="openEditProduct(this)">
-							<i class="bi bi-pencil"></i> Update
-						</button>
+						<!-- Admin Buttons -->
+						<div th:if="${isAdmin}">
+							<button class="btn btn-warning btn-sm updateProductBtn"
+								th:data-id="${product.id}" onclick="openEditProduct(this)">
+								<i class="bi bi-pencil"></i> Update
+							</button>
 
+							<a th:href="@{'/deleteProduct/' + ${product.id}}"
+								class="btn yellow-background btn-sm"
+								onclick="return confirm('Are you sure to delete this product?');">
+								<i class="bi bi-trash"></i> Delete
+							</a>
+						</div>
 
-
-
-						<a th:href="@{'/deleteProduct/' + ${product.id}}"
-							class="btn yellow-background btn-sm"
-							onclick="return confirm('Are you sure to delete this product?');">
-							<i class="bi bi-trash"></i> Delete
-						</a>
+						<!-- Customer Button -->
+						<div th:if="${!isAdmin}">
+							<button class="btn yellow-background btn-sm add-to-cart-btn"
+								th:data-id="${product.id}">
+								<i class="bi bi-cart-plus"></i> Add to Cart
+							</button>
+						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>

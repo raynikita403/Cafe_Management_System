@@ -31,8 +31,6 @@ public class JWTFilters extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String path = request.getRequestURI();
-
-        // Skip JWT check for public endpoints & static resources
         if (path.startsWith("/login") || path.startsWith("/register") || path.startsWith("/index")
             || path.startsWith("/styles/") || path.startsWith("/js/") || path.startsWith("/images/")) {
             filterChain.doFilter(request, response);
@@ -56,11 +54,13 @@ public class JWTFilters extends OncePerRequestFilter {
             String token = authHeader.substring(7);
             try {
                 String username = jwtUtil.extractUsername(token);
+                String name = jwtUtil.extractName(token);  
+                String role = jwtUtil.extractRole(token);  
 
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     if (jwtUtil.validateToken(token, username)) {
-                        String role = jwtUtil.extractRole(token);
 
+                        // Create Spring Security authentication
                         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                                 username,
                                 null,
@@ -69,10 +69,13 @@ public class JWTFilters extends OncePerRequestFilter {
 
                         auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(auth);
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute("userName", name);
+                        session.setAttribute("userRole", role);
+                        session.setAttribute("username", username);
                     }
                 }
             } catch (ExpiredJwtException e) {
-                // Token expired: send 401 response
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.getWriter().write("Token expired. Please login again.");
                 return;

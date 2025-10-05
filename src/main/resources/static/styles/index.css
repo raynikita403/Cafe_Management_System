@@ -21,6 +21,15 @@
   
 }
 
+.dropdown-menu .dropdown-item {
+    color: white !important;   
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: white !important;
+}
+
 @media (max-width: 768px) {
   .carousel-img {
     height: 250px;      

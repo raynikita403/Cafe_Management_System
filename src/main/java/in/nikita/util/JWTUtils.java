@@ -1,4 +1,5 @@
 package in.nikita.util;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -9,27 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class JWTUtils {
 
-    // Use a fixed secret key (at least 32 chars for HS256)
     private static final String SECRET = "my-super-secret-key-which-is-at-least-32chars!";
-
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
-   // private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour....this is correct but while time of develop not good
-    private final long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 365; // for developing purpose
+    // 1 year for development (change to 1 hr in prod)
+    private final long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 365;
 
-
-    public String generateToken(String username, String role) {
-        System.out.println("Generating token for username: " + username + ", role: " + role);
-
-        String token = Jwts.builder()
-                .setSubject(username)
-                .claim("role", role)
+    // ✅ removed the unused 3rd param
+    public String generateToken(String username, String role, String fullName) {
+        return Jwts.builder()
+                .setSubject(username) // subject = username (unique login ID / email)
+                .claim("role", role)  // role claim
+                .claim("name", fullName) // store full name for Welcome message
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(key)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
-
-        System.out.println("Generated token: " + token);
-        return token;
     }
 
     public String extractRole(String token) {
@@ -39,6 +34,15 @@ public class JWTUtils {
                 .parseClaimsJws(token)
                 .getBody()
                 .get("role", String.class);
+    }
+
+    public String extractName(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("name", String.class);
     }
 
     public String extractUsername(String token) {
