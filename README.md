@@ -89,7 +89,7 @@ All user passwords are securely stored in the database in encrypted form using S
 [![Order Placed](Screenshots/OrderPlaced.png)](screenshots/OrderPlaced.png)
 
 ### Inactive User 
-[![Inactive User](Screenshots/inActiveUserPage.png)](Screenshots/inActiveUserPage.png)
+[![Inactive User](Screenshots/InActiveUserPage.png)](Screenshots/InActiveUserPage.png)
 
 ### Order List
 [![ Order List ](Screenshots/OrderList.png)](screenshots/OrderList.png)
