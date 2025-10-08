@@ -14,30 +14,32 @@ import in.nikita.filters.JWTFilters;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	@Autowired
-	private JWTFilters jwtFilters;
+
+    @Autowired
+    private JWTFilters jwtFilters;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // disable CSRF for testing or APIs
+            .csrf(csrf -> csrf.disable()) // disable CSRF for APIs / testing
             .authorizeHttpRequests(auth -> auth
-                // public URLs
+                // Public URLs
                 .requestMatchers(
-                		 "/index",
-                	        "/login",
-                	        "/register",
-                	        "/styles/**",
-                	        "/images/**",
-                	        "/js/**"
+                    "/index",
+                    "/login",
+                    "/register",
+                    "/logout",        // Allow logout without JWT
+                    "/styles/**",
+                    "/images/**",
+                    "/js/**"
                 ).permitAll()
-                // role-based access
+                // Role-based access
                 .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/customer/**").hasAuthority("ROLE_USER")
-                // everything else requires authentication
+                // All other requests require authentication
                 .anyRequest().authenticated()
             )
-            
+            // Add JWT filter before Spring Security authentication
             .addFilterBefore(jwtFilters, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

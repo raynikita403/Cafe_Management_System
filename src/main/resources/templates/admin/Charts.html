@@ -4,15 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe Products</title>
+    <title>Cafe Products Sales</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-</head>
-
-<body>
-  		<h3>Charts of related sell is here.... </h3>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="text-center mb-4">
+        <h3>Sales Chart of Products</h3>
+        <p>Select a period to view high-selling products</p>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-4">
+            <select id="filterType" class="form-control">
+                <option value="month">This Month</option>
+                <option value="week">This Week</option>
+                <option value="year">This Year</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+	<script>
+    let salesChart; // global variable to store Chart instance
+
+    async function fetchSalesData(period) {
+        // Call backend API
+        const response = await fetch(`/admin/chart/sales?period=${period}`);
+        const data = await response.json();
+
+        const labels = data.map(item => item[0]);      // product names
+        const quantities = data.map(item => item[1]);  // total sold
+
+        // If chart already exists, destroy it before creating a new one
+        if (salesChart) {
+            salesChart.destroy();
+        }
+
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        salesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: `Top Selling Products (${period.charAt(0).toUpperCase() + period.slice(1)})`,
+                    data: quantities,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Initial chart load
+    $(document).ready(function() {
+        const filter = $('#filterType').val();
+        fetchSalesData(filter);
+
+        // Change event for select
+        $('#filterType').on('change', function() {
+            const selected = $(this).val();
+            fetchSalesData(selected);
+        });
+    });
+</script>
+	
+    </body>
 
 </html>

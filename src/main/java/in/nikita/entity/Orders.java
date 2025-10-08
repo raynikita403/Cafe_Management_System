@@ -1,6 +1,7 @@
 package in.nikita.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders") 
@@ -21,6 +22,10 @@ public class Orders {
     private int productQty;
     private double bill;
 
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    
     public Orders() {}
 
     public Orders(CafePruduct product, UserRegisterEntity user, int productQty, double bill) {
@@ -30,7 +35,20 @@ public class Orders {
         this.bill = bill;
     }
 
-    // Getters and Setters
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+    
+    public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	// Getters and Setters
     public Integer getOrderId() { return orderId; }
     public void setOrderId(Integer orderId) { this.orderId = orderId; }
 
@@ -46,9 +64,14 @@ public class Orders {
     public double getBill() { return bill; }
     public void setBill(double bill) { this.bill = bill; }
 
+
     @Override
     public String toString() {
-        return "Order [orderId=" + orderId + ", product=" + product + ", user=" + user 
-                + ", productQty=" + productQty + ", bill=" + bill + "]";
+        return "Order [orderId=" + orderId 
+                + ", product=" + product 
+                + ", user=" + user 
+                + ", productQty=" + productQty 
+                + ", bill=" + bill + "]";
     }
+
 }

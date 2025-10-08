@@ -65,21 +65,22 @@ public class RegisterLoginController {
     @PostMapping("/login")
     public String loginUser(@ModelAttribute("user") UserRegisterEntity loginUser,
                             Model model, HttpSession session) {
-
         UserRegisterEntity user = userService.loginUser(
                 loginUser.getUserEmail(),
                 loginUser.getUserPassword()
         );
 
         if (user != null) {
-        	  // ✅ Add the full customer object for order mapping later
+            if (!user.isActive()) {
+                model.addAttribute("error", "Your account is deactivated. Contact admin.");
+                return "admin/Inactive"; 
+            }
             session.setAttribute("customer", user);
-            
             session.setAttribute("token", user.getToken());
             session.setAttribute("userName", user.getUserName());
             session.setAttribute("userRole", user.getRole());
             session.setAttribute("username", user.getUserEmail());
-            
+
             // Manually set authentication in SecurityContext for session
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     user.getUserEmail(),
@@ -92,6 +93,7 @@ public class RegisterLoginController {
             // Redirect based on role
             if ("ROLE_ADMIN".equals(user.getRole())) return "redirect:/Admin";
             else return "redirect:/Customer";
+
         } else {
             model.addAttribute("error", "Invalid email or password!");
             return "login";
@@ -118,4 +120,36 @@ public class RegisterLoginController {
     public String userDash() {
         return "customer/User";
     }
+    /*Logout*/
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        String email = null;
+
+        // Try getting email from session
+        Object sessionEmail = session.getAttribute("username");
+        if (sessionEmail != null) {
+            email = sessionEmail.toString();
+        }
+
+        // Fallback to Spring Security principal
+        if (email == null) {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof UserRegisterEntity) {
+                email = ((UserRegisterEntity) principal).getUserEmail();
+            } else if (principal instanceof String) {
+                email = (String) principal;
+            }
+        }
+        // Clear token in DB
+        if (email != null) {
+            userService.logoutUser(email);
+        }
+
+        // Clear session and SecurityContext
+        session.invalidate();
+        SecurityContextHolder.clearContext();
+        return "redirect:/login";
+    }
+
+
 }

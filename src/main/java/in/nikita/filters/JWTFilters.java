@@ -11,6 +11,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import in.nikita.entity.UserRegisterEntity;
+import in.nikita.repository.UserRegisterRepository;
 import in.nikita.util.JWTUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -25,18 +27,22 @@ public class JWTFilters extends OncePerRequestFilter {
     @Autowired
     private JWTUtils jwtUtil;
 
+    @Autowired
+    private UserRegisterRepository userRepo;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String path = request.getRequestURI();
-        if (path.startsWith("/login") || path.startsWith("/register") || path.startsWith("/index")
-            || path.startsWith("/styles/") || path.startsWith("/js/") || path.startsWith("/images/")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
+        if (path.startsWith("/login") || path.startsWith("/register") 
+        	    || path.startsWith("/index") || path.startsWith("/logout") 
+        	    || path.startsWith("/styles/") || path.startsWith("/js/") || path.startsWith("/images/")) {
+        	    filterChain.doFilter(request, response);
+        	    return;
+        	}
+        System.out.println("JWT Filter checking path: " + path);
         String authHeader = request.getHeader("Authorization");
 
         // If no header, try session token
@@ -54,13 +60,22 @@ public class JWTFilters extends OncePerRequestFilter {
             String token = authHeader.substring(7);
             try {
                 String username = jwtUtil.extractUsername(token);
-                String name = jwtUtil.extractName(token);  
-                String role = jwtUtil.extractRole(token);  
+
+                // Fetch user from DB to check token
+                UserRegisterEntity user = userRepo.findByUserEmail(username).orElse(null);
+                if (user == null || user.getToken() == null || !user.getToken().equals(token)) {
+                    // Token is invalid or cleared (logout)
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.getWriter().write("Invalid or expired token. Please login again.");
+                    return;
+                }
+
+                String role = jwtUtil.extractRole(token);
+                String name = jwtUtil.extractName(token);
 
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     if (jwtUtil.validateToken(token, username)) {
 
-                        // Create Spring Security authentication
                         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                                 username,
                                 null,
@@ -69,10 +84,12 @@ public class JWTFilters extends OncePerRequestFilter {
 
                         auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(auth);
+
                         HttpSession session = request.getSession(true);
                         session.setAttribute("userName", name);
                         session.setAttribute("userRole", role);
                         session.setAttribute("username", username);
+                        session.setAttribute("token", token);
                     }
                 }
             } catch (ExpiredJwtException e) {
@@ -85,7 +102,6 @@ public class JWTFilters extends OncePerRequestFilter {
                 return;
             }
         } else {
-            // No token provided
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Missing or invalid Authorization header");
             return;

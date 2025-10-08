@@ -53,8 +53,7 @@
 								class="dropdown-item text-light fw-bold">Welcome! <span
 								th:text="${session.userName}">User</span>
 							</li>
-							<li th:if="${session.userName != null}"><a
-								class="dropdown-item text-light" href="/orders">Your Orders</a></li>
+							
 							<li th:if="${session.userName != null}"><a
 								class="dropdown-item" href="/logout">Logout</a></li>
 							<li th:if="${session.userName == null}"><a
