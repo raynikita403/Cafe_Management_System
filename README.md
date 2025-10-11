@@ -1,10 +1,8 @@
-# Cafe Management System (In-Progress)
+# Cafe Management System
 
 This project is a Cafe Management System, demonstrating role-based login and core CRUD functionalities for Admin and Customer users.
 The project uses Spring Boot, Spring Security with JWT, Spring Data JPA, Spring Web MVC, Thymeleaf, MySQL, Bootstrap, AJAX, and jQuery to build a dynamic and secure web application.
 All user passwords are securely stored in the database in encrypted form using Spring Security.
-
----
 
 ## **Technologies Used**
 - **Backend:** Spring Boot, Spring Security, Spring Data JPA, Spring Web MVC  
@@ -15,9 +13,9 @@ All user passwords are securely stored in the database in encrypted form using S
 
 ---
 
-## **Project Features (In-Progress)**
+## **Project Features**
 - **Role-based login:** Separate access for **Admin** and **Customer**
-- - **Secure password storage** using encryption (Spring Security)  
+- **Secure password storage** using encryption (Spring Security)  
 - **JWT token generation for authenticated users**
 
 ## User Features ##
@@ -25,7 +23,7 @@ All user passwords are securely stored in the database in encrypted form using S
       Add/Remove products to cart dynamically
       Manage product quantity with increase/decrease buttons
       Live total calculation in cart modal
-      Order Placement Flow:
+     Order Placement Flow: 
       Place order directly from the cart
       Orders saved to the database with quantity and bill details
       Cart automatically cleared after successful order
