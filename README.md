@@ -30,6 +30,7 @@ All user passwords are securely stored in the database in encrypted form using S
       SweetAlert2 popups for order confirmation & error handling
       Spring Boot Email Integration (User Side):
       Users can send msg to admin by using mail (Contact Us)
+      Inactive User can send msg to the Admin and that msg will be display in Admin Page
       Responsive UI with Bootstrap
       Pages rendered dynamically with Thymeleaf templates
 
@@ -62,6 +63,8 @@ All user passwords are securely stored in the database in encrypted form using S
 ### User Login Page
 [![User Login](Screenshots/Login.png)](Screenshots/Login.png)
 
+-----Admin Dashboard-------------------------
+
 ### Admin Login
 [![Admin Login](Screenshots/AdminDashboard.png)](screenshots/AdminDashboard.png)
 
@@ -70,6 +73,20 @@ All user passwords are securely stored in the database in encrypted form using S
 
 ### Update Product Form
 [![Update Product Form](Screenshots/UpdateForm.png)](screenshots/UpdateForm.png)
+
+### Order List
+[![ Order List ](Screenshots/OrderList.png)](screenshots/OrderList.png)
+
+### User Manage
+[![ User Manage ](Screenshots/UserManage.png)](screenshots/UserManage.png)
+
+### Chart
+[![Chart ](Screenshots/Chart.png)](screenshots/Chart.png)
+
+### InActiveUserMsg
+[![InActiveUserMsg ](Screenshots/InactiveUserMsg.png)](screenshots/InactiveUserMsg.png)
+
+---------------------Customer Page ----------------------------
 
 ### Customer Page
 [![Customer Page](Screenshots/CustomerPage.png)](screenshots/CustomerPage.png)
@@ -87,16 +104,11 @@ All user passwords are securely stored in the database in encrypted form using S
 [![Order Placed](Screenshots/OrderPlaced.png)](screenshots/OrderPlaced.png)
 
 ### Inactive User 
-[![Inactive User](Screenshots/InActiveUserPage.png)](Screenshots/InActiveUserPage.png)
+[![Inactive User](Screenshots/InActiveUserScreen.png)](Screenshots/InActiveUserScreen.png)
 
-### Order List
-[![ Order List ](Screenshots/OrderList.png)](screenshots/OrderList.png)
+### Inactive User MsgBox 
+[![Inactive User](Screenshots/InActiveUserMsgBox.png)](Screenshots/InActiveUserMsgBox.png)
 
-### User Manage
-[![ User Manage ](Screenshots/UserManage.png)](screenshots/UserManage.png)
-
-### Chart
-[![Chart ](Screenshots/Chart.png)](screenshots/Chart.png)
 
 
 
