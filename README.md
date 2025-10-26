@@ -107,7 +107,7 @@ All user passwords are securely stored in the database in encrypted form using S
 [![Inactive User](Screenshots/InActiveUserScreen.png)](Screenshots/InActiveUserScreen.png)
 
 ### Inactive User MsgBox 
-[![Inactive User](Screenshots/InActiveUserMsgBox.png)](Screenshots/InActiveUserMsgBox.png)
+[![Inactive User MsgBox](Screenshots/InActiveUserMsgBox.png)](Screenshots/InActiveUserMsgBox.png)
 
 
 
