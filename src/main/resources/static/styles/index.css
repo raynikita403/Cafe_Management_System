@@ -78,7 +78,7 @@ input,textarea {
 
 .footer-background {
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url(/public/images/footer-background.avif);
+              url(./static/images/footer-background.avif);
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;

@@ -19,8 +19,8 @@ public class UserRegisterEntity {
     @Column(name = "active")
     private boolean active = true;
 
-    // ---------------- Orders (no cascade) ----------------
-    @OneToMany(mappedBy = "user")  // removed cascade & orphanRemoval
+    // ---------------- Orders----------------
+    @OneToMany(mappedBy = "user")  
     private List<Orders> orders;
 
     public UserRegisterEntity() {

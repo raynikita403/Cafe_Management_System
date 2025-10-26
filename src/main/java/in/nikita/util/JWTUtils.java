@@ -16,7 +16,6 @@ public class JWTUtils {
     // 1 year for development (change to 1 hr in prod)
     private final long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 365;
 
-    // ✅ removed the unused 3rd param
     public String generateToken(String username, String role, String fullName) {
         return Jwts.builder()
                 .setSubject(username) // subject = username (unique login ID / email)

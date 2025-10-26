@@ -38,7 +38,7 @@ public class UserRegisterServiceImpli implements UserRegisterService {
             return null; // email already exists
         }
         register.setUserPassword(passwordEncoder.encode(register.getUserPassword()));
-        register.setActive(true); // ensure default active
+        register.setActive(true); 
         return userRepo.save(register);
     }
 
@@ -57,7 +57,7 @@ public class UserRegisterServiceImpli implements UserRegisterService {
         u.setUserPassword(passwordEncoder.encode(userPassword));
         u.setRole(role != null ? role : "ROLE_USER");
         u.setToken(null);
-        u.setActive(true); // default active
+        u.setActive(true); 
         return userRepo.save(u);
     }
 

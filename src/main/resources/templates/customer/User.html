@@ -51,7 +51,7 @@
 						</a>
 						<ul
 							class=" text-light background-yellow dropdown-menu dropdown-menu-end">
-							<!-- Show welcome only if logged in -->
+							
 							<li th:if="${session.userName != null}"
 								class="dropdown-item fw-bold">Welcome! <span
 								th:text="${session.userName}">User</span>
@@ -174,7 +174,7 @@
 					home.</p>
 				<span
 					class="bg-light mb-4 mb-lg-2 px-4 py-2 rounded-5 ms-4 ms-lg-0 "><a
-					href="About.html" class="font-yellow text-decoration-none">Know
+					href="/about" class="font-yellow text-decoration-none">Know
 						more About Us</a></span>
 			</div>
 		</div>
@@ -203,7 +203,7 @@
 						alt="...">
 					<div class="card-body background-yellow">
 						<p class="card-text text-light">Highly satisfied! The product
-							quality exceeded my expectations.</p>
+							quality good.</p>
 						<h6 class="card-title text-light">Manvi Singh</h6>
 					</div>
 				</div>
@@ -227,7 +227,7 @@
 						alt="...">
 					<div class="card-body background-yellow">
 						<p class="card-text text-light">Excellent experience! Very
-							satisfied with the service provided.</p>
+							satisfied with the services</p>
 						<h6 class="card-title text-light">Rozi</h6>
 					</div>
 				</div>
@@ -379,8 +379,8 @@
 								<tr>
 									<th class="text-white">Image</th>
 									<th class="text-white">Product</th>
-									<th class="text-white">Price</th>
 									<th class="text-white">Qty</th>
+									<th class="text-white">Price</th>
 									<th class="text-white">Remove</th>
 								</tr>
 							</thead>

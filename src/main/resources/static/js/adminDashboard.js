@@ -65,6 +65,12 @@ $(document).ready(function() {
             initUserToggleButtons(); // Initialize toggle buttons after content loads
         });
     });
+     $("#Messages").click(function(e) {
+        e.preventDefault();
+        $("#main-content").load("/messages", function() {
+            showFloatingButton(false);
+        });
+    });
 
     // ---------------- Toggle User Active/Inactive ----------------
     function initUserToggleButtons() {

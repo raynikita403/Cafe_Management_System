@@ -17,10 +17,17 @@ public class CartServiceImpli implements CartService {
 	
 	@Override
 	public CartItem addToCart(UserRegisterEntity customer, CafePruduct product) {
-		  CartItem existing = cartRepo.findByCustomerAndProduct(customer, product);
-		  CartItem item = new CartItem(customer, product);
-	        return cartRepo.save(item);
+	    CartItem existing = cartRepo.findByCustomerAndProduct(customer, product);
+
+	    if (existing != null) {
+	        // Already in cart, return existing
+	        return existing;
+	    }
+	    // Not in cart, create new entry
+	    CartItem item = new CartItem(customer, product);
+	    return cartRepo.save(item);
 	}
+
 
 	@Override
 	public List<CartItem> getCartItems(UserRegisterEntity customer) {

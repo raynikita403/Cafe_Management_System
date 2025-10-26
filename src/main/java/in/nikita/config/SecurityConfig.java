@@ -21,17 +21,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // disable CSRF for APIs / testing
+            .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
                 // Public URLs
                 .requestMatchers(
                     "/index",
                     "/login",
                     "/register",
-                    "/logout",        // Allow logout without JWT
+                    "/logout",      
                     "/styles/**",
                     "/images/**",
-                    "/js/**"
+                    "/js/**",
+                    "/saveMessage"
                 ).permitAll()
                 // Role-based access
                 .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")

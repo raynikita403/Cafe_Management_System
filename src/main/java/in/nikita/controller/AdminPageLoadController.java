@@ -27,6 +27,7 @@ public class AdminPageLoadController {
     @GetMapping("/orders")
     public String orders(Model model) {
         List<Orders> orders = orderService.getAllOrders();
+        orders.sort((o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()));
         model.addAttribute("orders", orders);
         return "/admin/Orders :: ordersListFragment";
     }
@@ -54,5 +55,7 @@ public class AdminPageLoadController {
         // Return fragment only for AJAX
         return "/admin/ManageUsers :: manageUsersFragment";
     }
+    
+   
 
 }

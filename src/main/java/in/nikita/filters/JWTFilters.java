@@ -38,7 +38,9 @@ public class JWTFilters extends OncePerRequestFilter {
         String path = request.getRequestURI();
         if (path.startsWith("/login") || path.startsWith("/register") 
         	    || path.startsWith("/index") || path.startsWith("/logout") 
-        	    || path.startsWith("/styles/") || path.startsWith("/js/") || path.startsWith("/images/")) {
+        	    || path.startsWith("/styles/") || path.startsWith("/js/") || path.startsWith("/images/") 
+        	    || path.startsWith("/saveMessage")  
+        	) {
         	    filterChain.doFilter(request, response);
         	    return;
         	}
